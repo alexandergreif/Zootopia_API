@@ -1,20 +1,4 @@
-import requests
-import json
-
-# def api_request(name):
-#
-# API_KEY = 'YiLRKz33s/9rKRZAVD1gag==2Ue5RVRY4ijqhCOl'
-#
-#
-# API_URL = f'https://api.api-ninjas.com/v1/animals?name={name}'
-#
-# res = requests.get(API_URL, headers={'X-Api-Key': API_KEY})
-# if res.status_code == requests.codes.ok:
-#     print(res)
-#     res = res.json()
-# for animal in res:
-#     print(animal)
-
+import data_fetcher
 
 
 def serialize_animal(animal_obj):
@@ -46,22 +30,12 @@ def serialize_animal(animal_obj):
     output += "</li>\n"
     return output
 
-def get_animals_from_api(name):
-    """Fetch animal data from the API for the given name."""
-    API_KEY = 'YiLRKz33s/9rKRZAVD1gag==2Ue5RVRY4ijqhCOl'
-    API_URL = f'https://api.api-ninjas.com/v1/animals?name={name}'
-    headers = {'X-Api-Key': API_KEY}
-    response = requests.get(API_URL, headers=headers)
-    if response.status_code == requests.codes.ok:
-        return response.json()
-    else:
-        print(f"Error: API request failed with status code {response.status_code}")
-        return []
+
 
 def main():
     """Fetch animal data from the API, generate HTML output, and write it to a file."""
     user_animal = input("Please enter the animal your looking for: ")
-    animals = get_animals_from_api(user_animal)
+    animals = data_fetcher.fetch_data(user_animal)
 
     animals_output = ""
     if not animals:
