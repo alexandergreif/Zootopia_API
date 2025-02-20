@@ -60,14 +60,16 @@ def get_animals_from_api(name):
 
 def main():
     """Fetch animal data from the API, generate HTML output, and write it to a file."""
-    # Fetch animal data for "Fox" from the API
-    animals = get_animals_from_api("Cat")
+    user_animal = input("Please enter the animal your looking for: ")
+    animals = get_animals_from_api(user_animal)
 
-
-    # Build the HTML string using the serialize_animal function
     animals_output = ""
-    for animal in animals:
-        animals_output += serialize_animal(animal)
+    if not animals:
+        animals_output = f'<h2>The animal "{user_animal}"does not exist. </h2>'
+    else:
+        # Build the HTML string using the serialize_animal function
+        for animal in animals:
+            animals_output += serialize_animal(animal)
 
     # Read the HTML template file
     template_file_path = "animals_template.html"
