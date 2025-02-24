@@ -17,8 +17,8 @@ This project fetches animal data from an API and generates a website to display 
 
 1. **Clone the Repository:**
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/alexandergreif/Zootopia_API
+   
 Install Dependencies: Make sure you have Python installed, then run:
 bash
 pip install -r requirements.txt
