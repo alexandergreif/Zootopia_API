@@ -1,18 +1,21 @@
 import requests
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-API_KEY = os.getenv('API_KEY')
+API_KEY = 'YiLRKz33s/9rKRZAVD1gag==2Ue5RVRY4ijqhCOl'
+API_URL = 'https://api.api-ninjas.com/v1/animals'
 
 
 def fetch_data(name):
-    """Fetch animal data from the API for the given name."""
-    API_URL = f'https://api.api-ninjas.com/v1/animals?name={name}'
+    """
+    Fetches the animal data for the given name.
+
+    Returns:
+        A list of animal dictionaries.
+    """
     headers = {'X-Api-Key': API_KEY}
-    response = requests.get(API_URL, headers=headers)
+    response = requests.get(f"{API_URL}?name={name}", headers=headers)
     if response.status_code == requests.codes.ok:
         return response.json()
     else:
-        print(f"Error: API request failed with status code {response.status_code}")
+        print(f"Error: API request failed with status code "
+              f"{response.status_code}")
         return []
